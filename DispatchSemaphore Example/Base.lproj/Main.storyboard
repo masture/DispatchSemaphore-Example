@@ -16,16 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGv-0c-tR5">
-                                <rect key="frame" x="167" y="76" width="80" height="44"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="X8T-zH-O2E">
+                                <rect key="frame" x="20" y="76" width="374" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGv-0c-tR5">
+                                        <rect key="frame" x="0.0" y="0.0" width="179" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="qFK-bk-JhQ"/>
+                                        </constraints>
+                                        <state key="normal" title="Load Image"/>
+                                        <connections>
+                                            <action selector="loadImagePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c5d-WA-Yrk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCg-3R-X8Z">
+                                        <rect key="frame" x="195" y="7" width="179" height="30"/>
+                                        <state key="normal" title="Sync Load"/>
+                                        <connections>
+                                            <action selector="syncLoadImagePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="24N-YV-MfF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="qFK-bk-JhQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="OQx-h8-iOw"/>
                                 </constraints>
-                                <state key="normal" title="Load Image"/>
-                                <connections>
-                                    <action selector="loadImagePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c5d-WA-Yrk"/>
-                                </connections>
-                            </button>
+                            </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-Oo-Dl9">
                                 <rect key="frame" x="16" y="136" width="382" height="710"/>
                                 <color key="backgroundColor" systemColor="placeholderTextColor"/>
@@ -34,11 +49,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OGv-0c-tR5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3z6-3L-xDG"/>
-                            <constraint firstItem="OGv-0c-tR5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="LXp-9J-kgA"/>
+                            <constraint firstItem="X8T-zH-O2E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="CyB-Kv-Uug"/>
                             <constraint firstItem="gA1-Oo-Dl9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RpL-Xf-tLP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gA1-Oo-Dl9" secondAttribute="trailing" constant="16" id="T94-MT-cU4"/>
-                            <constraint firstItem="gA1-Oo-Dl9" firstAttribute="top" secondItem="OGv-0c-tR5" secondAttribute="bottom" constant="16" id="WGk-GY-J0f"/>
+                            <constraint firstItem="gA1-Oo-Dl9" firstAttribute="top" secondItem="X8T-zH-O2E" secondAttribute="bottom" constant="16" id="Vf6-3H-Gus"/>
+                            <constraint firstItem="X8T-zH-O2E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="bQj-2V-9Ro"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="X8T-zH-O2E" secondAttribute="trailing" constant="20" id="pk1-HY-VjR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gA1-Oo-Dl9" secondAttribute="bottom" constant="16" id="qPA-zR-mY3"/>
                         </constraints>
                     </view>
