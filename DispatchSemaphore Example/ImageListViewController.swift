@@ -29,28 +29,53 @@ class ImageListViewController: UIViewController {
         tableView.rowHeight = 225
     }
     
-    @IBAction func loadImagesPressed(_ sender: UIButton) {
+    @IBAction func eraseTapped(_ sender: UIBarButtonItem) {
         images.removeAll()
         tableView.reloadData()
-        
+        self.title = "\(images.count) image" + (images.count != 1 ? "s" : "")
+    }
+    
+    @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
         for imagePath in pathOfImages.shuffled() {
             let url = URL(string: imagePath)!
             
-//            DispatchQueue.global(qos: .default).async {
+            DispatchQueue.global(qos: .background).async {
                 print("Fetching image: \(imagePath)")
                 let (data, response, error) = URLSession.shared.performSynchronously(url: url)
                 
+                if let error = error {
+                    print("Error fetching image: \(error.localizedDescription)")
+                }
+                
                 if let imageData = data,
                    let image = UIImage(data: imageData) {
-                    self.images.append(image)
+                    
                     DispatchQueue.main.async {
+                        self.images.append(image)
                         self.tableView.reloadData()
+                        self.title = "\(self.images.count) image" + (self.images.count != 1 ? "s" : "")
                     }
+                } else {
+                    print("Not an image!")
                 }
-//            }
+            }
             
         }
         
+    }
+    @IBAction func showFirstCellTapped(_ sender: UIButton) {
+        showCell(atRow: 0)
+    }
+    
+    @IBAction func showLastCellTapped(_ sender: UIButton) {
+        showCell(atRow: images.count-1)
+    }
+    
+    private func showCell(atRow row: Int) {
+        if !images.isEmpty {
+            let indexPath = IndexPath(row: row, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     /*
@@ -75,6 +100,7 @@ extension ImageListViewController: UITableViewDataSource {
         
         if let imageCell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell", for: indexPath) as? ImageTableViewCell {
             imageCell.dogImageView.image = images[indexPath.row]
+            imageCell.dogNoLabel.text = " \(indexPath.row+1) "
             return imageCell
         }
         
