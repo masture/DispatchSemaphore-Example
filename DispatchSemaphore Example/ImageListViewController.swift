@@ -40,7 +40,7 @@ class ImageListViewController: UIViewController {
             let url = URL(string: imagePath)!
             
             DispatchQueue.global(qos: .background).async {
-                print("Fetching image: \(imagePath)")
+//                print("Fetching image: \(imagePath)")
                 let (data, response, error) = URLSession.shared.performSynchronously(url: url)
                 
                 if let error = error {
